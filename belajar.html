@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 30px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 18px;
+            background-color: #ffffff;
+            display: inline-block;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pengumuman Kelulusan</h1>
+    <h1>UPT SMKN 1 Bantaeng</h1>
+    <h1>Tahun Pelajaran 2024/2025</h1>
+
+    <p>Masukkan NISN Anda:</p>
+    <input type="text" id="nisnInput" placeholder="Contoh: 0077698726">
+    <button onclick="cekKelulusan()">Cek</button>
+
+    <div class="result" id="hasil"></div>
+
+    <script>
+        const dataSiswa = {
+            "0077698726": { nama: "ANDI NURUL ANDINI", kelas: "XIIAKL1", status: "LULUS" },
+            "0078641280": { nama: "AQILAH NAILAH ZAHRA", kelas: "XIIAKL1", status: "LULUS" },
+            "0072045558": { nama: "ARINI", kelas: "XIIAKL1", status: "LULUS" },
+            "0076599652": { nama: "ASMIRANDA", kelas: "XIIAKL1", status: "LULUS" },
+            "0088127182": { nama: "ASNIATI", kelas: "XIIAKL1", status: "LULUS" },
+	    "0076912181": { nama : "CICI PERMATASARI", kelas : "XIIAKL1", status : "LULUS" },
+            "0075396813": { nama : "FITRI", kelas : "XIIAKL1", status : "LULUS" },
+	    "0078265275": { nama : "INDAH", kelas : "XIIAKL1", status : "LULUS" },
+ 	    "0072921218": { nama : "ISMA DAMAYANTI", kelas : "XIIAKL1", status : "LULUS" },
+	    "0073987390": { nama : "KHAERANI ARISKA PUTRI", kelas : "XIIAKL1", status : "LULUS" },
+ 	    "0067322231": { nama : "KHAERIL", kelas : "XIIAKL1", status : "LULUS" },
+"0078214798": { nama : "KIRANA CINTA MENTARI", kelas : "XIIAKL1", status : "LULUS" },
+"0079437408": { nama : "LINDA", kelas : "XIIAKL1", status : "LULUS" },
+"0076939085": { nama : "MUH. ASRULLAH", kelas : "XIIAKL1", status : "LULUS" },
+"0078457879": { nama : "NUR SAHRA AMELIA", kelas : "XIIAKL1", status : "LULUS" },
+"0078188106": { nama : "NUR WINDA IRWANA", kelas : "XIIAKL1", status : "LULUS" },
+"0077229587": { nama : "NURA PRIYANTI", kelas : "XIIAKL1", status : "LULUS" },
+"0077256281": { nama : "NURFADILLAH", kelas : "XIIAKL1", status : "LULUS" },
+"0069404759": { nama : "RAHMAT", kelas : "XIIAKL1", status : "LULUS" },
+"0074118554": { nama : "RAHMAT YANDIRIANTO", kelas : "XIIAKL1", status : "LULUS" },
+"0075953099": { nama : "RESKI", kelas : "XIIAKL1", status : "LULUS" },
+"0038766666": { nama : "SINAR", kelas : "XIIAKL1", status : "LULUS" },
+"0065892134": { nama : "SUL APRIL", kelas : "XIIAKL1", status : "LULUS" },
+"0079692123": { nama : "SYAIFUL", kelas : "XIIAKL1", status : "LULUS" },
+"0077765756": { nama : "ULIL AMRI", kelas : "XIIAKL1", status : "LULUS" },
+"0078582621": { nama : "AENIL HARTIKA", kelas : "XIIAKL2", status : "LULUS" },
+"0079567749": { nama : "AFNI AL AULIA", kelas : "XIIAKL2", status : "LULUS" },
+"0084812131": { nama : "ANDI WULANDARI FAJAR. HB", kelas : "XIIAKL2", status : "LULUS" },
+"0077143620": { nama : "FIRMANSYAH", kelas : "XIIAKL2", status : "LULUS" },
+"0079737650": { nama : "IAN MEYDHANI SUBAIR", kelas : "XIIAKL2", status : "LULUS" },
+"0079282651": { nama : "KURNIAWAN", kelas : "XIIAKL2", status : "LULUS" },
+"0064965423": { nama : "M HAEDIR", kelas : "XIIAKL2", status : "LULUS" },
+"0053072574": { nama : "M.NUR ILYAS", kelas : "XIIAKL2", status : "LULUS" },
+"0071546040": { nama : "MARYAM", kelas : "XIIAKL2", status : "LULUS" },
+"0076510156": { nama : "MILA", kelas : "XIIAKL2", status : "LULUS" },
+"0063271025": { nama : "MUH AKSAN NAUFAL", kelas : "XIIAKL2", status : "LULUS" },
+"0071720589": { nama : "MUH ALGI FARI", kelas : "XIIAKL2", status : "LULUS" },
+"0077568165": { nama : "MUH REISYAH AL ARAF", kelas : "XIIAKL2", status : "LULUS" },
+"0075754507": { nama : "MUH. ALIF QADRI", kelas : "XIIAKL2", status : "LULUS" },
+"0083634090": { nama : "MUKARRAMA", kelas : "XIIAKL2", status : "LULUS" },
+"0072153114": { nama : "NANDA", kelas : "", status : "TIDAK LULUS" },
+"0063356081": { nama : "RAHMA KUSMALA DEWI", kelas : "XIIAKL2", status : "LULUS" },
+"0077794252": { nama : "RAHMAYANTI", kelas : "XIIAKL2", status : "LULUS" },
+"0069760103": { nama : "RIKA", kelas : "XIIAKL2", status : "LULUS" },
+"0067635569": { nama : "SATRIANI", kelas : "XIIAKL2", status : "LULUS" },
+"0062399984": { nama : "ST NURAENI", kelas : "XIIAKL2", status : "LULUS" },
+"0073658326": { nama : "SUCI MURNI MULIANA", kelas : "XIIAKL2", status : "LULUS" },
+"0063279707": { nama : "WINDA ASTUTI", kelas : "XIIAKL2", status : "LULUS" },
+"0062964021": { nama : "A. DEWI SARTIKA", kelas : "XIIMPLB1", status : "LULUS" },
+"0086702814": { nama : "ADHELIA AMNUR", kelas : "XIIMPLB1", status : "LULUS" },
+"0073079650": { nama : "AKBAR", kelas : "XIIMPLB1", status : "LULUS" },
+"0077404620": { nama : "ANDI MUHAMMAD HISYAM", kelas : "XIIMPLB1", status : "LULUS" },
+"0066626893": { nama : "ARIL", kelas : "XIIMPLB1", status : "LULUS" },
+"0073976892": { nama : "DILLA", kelas : "XIIMPLB1", status : "LULUS" },
+"0077463746": { nama : "DILLA PUSPITA SARI", kelas : "XIIMPLB1", status : "LULUS" },
+"0078850165": { nama : "ELIS", kelas : "XIIMPLB1", status : "LULUS" },
+"0048422359": { nama : "ERNIWATI", kelas : "XIIMPLB1", status : "LULUS" },
+"0079767952": { nama : "FATHUL MUBIN. A", kelas : "XIIMPLB1", status : "LULUS" },
+"0062780151": { nama : "FEBI AYU", kelas : "XIIMPLB1", status : "LULUS" },
+"0077421535": { nama : "FHIKA ZALZABILA", kelas : "XIIMPLB1", status : "LULUS" },
+"0072373870": { nama : "FIKRAH ULYA ISMAIL", kelas : "XIIMPLB1", status : "LULUS" },
+"0062398215": { nama : "FITRA", kelas : "XIIMPLB1", status : "LULUS" },
+"0075359665": { nama : "FITRI MAULIDYA", kelas : "XIIMPLB1", status : "LULUS" },
+"0050959537": { nama : "INAR RAHMADANI", kelas : "XIIMPLB1", status : "LULUS" },
+"0061829060": { nama : "JUMRAH", kelas : "XIIMPLB1", status : "LULUS" },
+"0076978895": { nama : "KARMILA. M", kelas : "XIIMPLB1", status : "LULUS" },
+"0076807779": { nama : "KARTIKA SARI", kelas : "XIIMPLB1", status : "LULUS" },
+"3074893155": { nama : "KASMAN", kelas : "XIIMPLB1", status : "LULUS" },
+"0073718408": { nama : "KIKI ANANDITA", kelas : "XIIMPLB1", status : "LULUS" },
+"0088192005": { nama : "KURNIA", kelas : "XIIMPLB1", status : "LULUS" },
+"0066384491": { nama : "KURNIAWAN", kelas : "XIIMPLB1", status : "LULUS" },
+"0077914652": { nama : "LIDIA", kelas : "XIIMPLB1", status : "LULUS" },
+"0072758357": { nama : "MANDA AULIA", kelas : "XIIMPLB1", status : "LULUS" },
+"0072380632": { nama : "MUH FARITS AL GHIPARI", kelas : "XIIMPLB1", status : "LULUS" },
+"0062181854": { nama : "PUTRA", kelas : "XIIMPLB1", status : "LULUS" },
+"0089179811": { nama : "Relvi Perdianti", kelas : "XIIMPLB1", status : "LULUS" },
+"0077071860": { nama : "RISMAWATI", kelas : "XIIMPLB1", status : "LULUS" },
+"0077585670": { nama : "RISNAWANTI", kelas : "XIIMPLB1", status : "LULUS" },
+"0072773538": { nama : "SAHRUL AHMAD FAUZAN", kelas : "XIIMPLB1", status : "LULUS" },
+"0079804674": { nama : "SALSA DILA PRATIWI", kelas : "XIIMPLB1", status : "LULUS" },
+"0054092393": { nama : "SINDI", kelas : "XIIMPLB1", status : "LULUS" },
+"0075813359": { nama : "TRI RESKI NUR FAHMI", kelas : "XIIMPLB1", status : "LULUS" },
+"0074759670": { nama : "A. MAGHFIRA RAMADHANI K", kelas : "XIIMPLB2", status : "LULUS" },
+"0076090234": { nama : "ADHIMA MUTAWALLI RI'AF", kelas : "XIIMPLB2", status : "LULUS" },
+"0072914739": { nama : "ANGGY", kelas : "XIIMPLB2", status : "LULUS" },
+"0082906295": { nama : "AYU ANGRAENI", kelas : "XIIMPLB2", status : "LULUS" },
+"0072896743": { nama : "DENIS", kelas : "XIIMPLB2", status : "LULUS" },
+"0066952220": { nama : "DILLA", kelas : "XIIMPLB2", status : "LULUS" },
+"0077965191": { nama : "ELSA", kelas : "XIIMPLB2", status : "LULUS" },
+"0053398027": { nama : "HARIANI", kelas : "", status : "TIDAK LULUS" },
+"0071678513": { nama : "LEPY SAPUTRA", kelas : "XIIMPLB2", status : "LULUS" },
+"0054096674": { nama : "MAWAR", kelas : "XIIMPLB2", status : "LULUS" },
+"0075618268": { nama : "MENTARI", kelas : "XIIMPLB2", status : "LULUS" },
+"0084958303": { nama : "MUH. RAIHAN", kelas : "XIIMPLB2", status : "LULUS" },
+"0064861381": { nama : "Muh. Taqwa Ibrahim", kelas : "XIIMPLB2", status : "LULUS" },
+"0073392542": { nama : "MUH. TAUFIQ AN NUR", kelas : "XIIMPLB2", status : "LULUS" },
+"0073834253": { nama : "MUHAMMAD IMAM HANAFI", kelas : "XIIMPLB2", status : "LULUS" },
+"3065222162": { nama : "NINI ANDRIANI", kelas : "XIIMPLB2", status : "LULUS" },
+"0063724397": { nama : "NUR FEBRIYANTI", kelas : "XIIMPLB2", status : "LULUS" },
+"0087775885": { nama : "NUR INDI ISLAMITA", kelas : "XIIMPLB2", status : "LULUS" },
+"0077060392": { nama : "NUR ISMI", kelas : "XIIMPLB2", status : "LULUS" },
+"0076858079": { nama : "NUR RISKA RAMADHANI", kelas : "XIIMPLB2", status : "LULUS" },
+"0074862266": { nama : "NURUL", kelas : "XIIMPLB2", status : "LULUS" },
+"0078964997": { nama : "NURUL NABILA", kelas : "XIIMPLB2", status : "LULUS" },
+"0075396723": { nama : "RIANG", kelas : "XIIMPLB2", status : "LULUS" },
+"0059524247": { nama : "RISKA", kelas : "XIIMPLB2", status : "LULUS" },
+"0071440200": { nama : "RISMA", kelas : "XIIMPLB2", status : "LULUS" },
+"0076127085": { nama : "ROFIQ AL QADRI", kelas : "XIIMPLB2", status : "LULUS" },
+"0072837684": { nama : "SABRINA", kelas : "XIIMPLB2", status : "LULUS" },
+"0076002024": { nama : "SAIDIL AMIN", kelas : "XIIMPLB2", status : "LULUS" },
+"0064114022": { nama : "SUCI AULIA", kelas : "XIIMPLB2", status : "LULUS" },
+"0073008868": { nama : "SULPIA NUR", kelas : "XIIMPLB2", status : "LULUS" },
+"0074716002": { nama : "SYAMSUL BAHRI", kelas : "XIIMPLB2", status : "LULUS" },
+"0068157738": { nama : "UKRA", kelas : "XIIMPLB2", status : "LULUS" },
+"0073454450": { nama : "UMI FAHMI ANITA", kelas : "XIIMPLB2", status : "LULUS" },
+"0075724189": { nama : "WULAN SARI", kelas : "XIIMPLB2", status : "LULUS" },
+"0067382404": { nama : "ZULKIFLI", kelas : "XIIMPLB2", status : "LULUS" },
+"0072703484": { nama : "AAN ILHAM HAS", kelas : "XIIPM1", status : "LULUS" },
+"0073778258": { nama : "AHMAD ANANDA PUTRA", kelas : "XIIPM1", status : "LULUS" },
+"0079358203": { nama : "AKMAL", kelas : "XIIPM1", status : "LULUS" },
+"0071855576": { nama : "ARDIANSYAH", kelas : "XIIPM1", status : "LULUS" },
+"0077905166": { nama : "ARWINDA", kelas : "XIIPM1", status : "LULUS" },
+"0064826373": { nama : "ARYA ADINATA", kelas : "XIIPM1", status : "LULUS" },
+"0078885714": { nama : "FERA", kelas : "XIIPM1", status : "LULUS" },
+"0061628773": { nama : "FITRI AWALIYAH RAMADANI", kelas : "XIIPM1", status : "LULUS" },
+"0078330087": { nama : "ILHAM", kelas : "XIIPM1", status : "LULUS" },
+"0066199289": { nama : "JUSNI", kelas : "XIIPM1", status : "LULUS" },
+"0077552005": { nama : "KHAEDAR", kelas : "XIIPM1", status : "LULUS" },
+"0066205689": { nama : "MARDINA", kelas : "XIIPM1", status : "LULUS" },
+"0073923787": { nama : "MUHAMMAD DAEFULLAH SAQWAN", kelas : "XIIPM1", status : "LULUS" },
+"0065917983": { nama : "NAYLA SAFITRI", kelas : "XIIPM1", status : "LULUS" },
+"0079390245": { nama : "NUR FADILLAH", kelas : "XIIPM1", status : "LULUS" },
+"0077702930": { nama : "NUR REZKI AMELIA", kelas : "XIIPM1", status : "LULUS" },
+"0062106577": { nama : "NUR SALSABILA", kelas : "XIIPM1", status : "LULUS" },
+"0079345495": { nama : "NURMAILA", kelas : "XIIPM1", status : "LULUS" },
+"0077177738": { nama : "NURWANDA", kelas : "XIIPM1", status : "LULUS" },
+"3072410128": { nama : "PUTRI AMELIA", kelas : "XIIPM1", status : "LULUS" },
+"0076961249": { nama : "PUTRI ASMALA LESTARI", kelas : "XIIPM1", status : "LULUS" },
+"0075231416": { nama : "REHAM", kelas : "XIIPM1", status : "LULUS" },
+"0084135265": { nama : "SALWA PUTRI AULIA", kelas : "XIIPM1", status : "LULUS" },
+"3073580982": { nama : "SERLI", kelas : "XIIPM1", status : "LULUS" },
+"0076403015": { nama : "SERLI", kelas : "XIIPM1", status : "LULUS" },
+"3069406898": { nama : "SUCI RAMADHANI", kelas : "XIIPM1", status : "LULUS" },
+"0063027576": { nama : "VIRAWATI", kelas : "XIIPM1", status : "LULUS" },
+"0073889541": { nama : "AHMAD", kelas : "XIIPM2", status : "LULUS" },
+"0079819026": { nama : "BUDI SETIAWAN", kelas : "XIIPM2", status : "LULUS" },
+"0086400495": { nama : "DENIS", kelas : "XIIPM2", status : "LULUS" },
+"0075148437": { nama : "DILA", kelas : "XIIPM2", status : "LULUS" },
+"0057249952": { nama : "FITRI AMELIA", kelas : "XIIPM2", status : "LULUS" },
+"0078027039": { nama : "GALANG SAUDI", kelas : "XIIPM2", status : "LULUS" },
+"0076449758": { nama : "HADRIAN RAHMAN", kelas : "XIIPM2", status : "LULUS" },
+"0079381550": { nama : "INDAH SARI", kelas : "XIIPM2", status : "LULUS" },
+"0139739703": { nama : "JUSMITA", kelas : "XIIPM2", status : "LULUS" },
+"0078955934": { nama : "MIFTAHUL JANNAH", kelas : "XIIPM2", status : "LULUS" },
+"0077832110": { nama : "MILDA", kelas : "XIIPM2", status : "LULUS" },
+"0087213253": { nama : "MUH. ADLY ANZAH", kelas : "XIIPM2", status : "LULUS" },
+"0089890449": { nama : "MUH. AIRLANGGA NESTA", kelas : "XIIPM2", status : "LULUS" },
+"0078237009": { nama : "NISRAH", kelas : "XIIPM2", status : "LULUS" },
+"0073443474": { nama : "NURINTANG", kelas : "XIIPM2", status : "LULUS" },
+"0069039565": { nama : "NURPADILLA", kelas : "XIIPM2", status : "LULUS" },
+"0079918229": { nama : "SALMAWATI", kelas : "XIIPM2", status : "LULUS" },
+"0069753419": { nama : "SITI NUR KHADIJA WAILISSA", kelas : "XIIPM2", status : "LULUS" },
+"0084709511": { nama : "SUHARTO", kelas : "XIIPM2", status : "LULUS" },
+"0074461541": { nama : "WAHYUDIN", kelas : "XIIPM2", status : "LULUS" },
+"0071830050": { nama : "YULIANA", kelas : "XIIPM2", status : "LULUS" },
+"0088426610": { nama : "YUYUN KARDIAN", kelas : "XIIPM2", status : "LULUS" },
+"0075049843": { nama : "AMELIA", kelas : "XIIBB", status : "LULUS" },
+"0074465887": { nama : "AYU NINTIAS HAKIM", kelas : "XIIBB", status : "LULUS" },
+"0075956136": { nama : "DHIZA JHULIA SYAM", kelas : "XIIBB", status : "LULUS" },
+"0074919580": { nama : "EKA SAFITRI", kelas : "XIIBB", status : "LULUS" },
+"0067537581": { nama : "FANISA MAULIDYA AKRAM", kelas : "XIIBB", status : "LULUS" },
+"0071621601": { nama : "FHATIMAH AZ ZAHRAH", kelas : "XIIBB", status : "LULUS" },
+"0061600593": { nama : "FITRI SAGINA", kelas : "XIIBB", status : "LULUS" },
+"0076475192": { nama : "IFA AMELIA", kelas : "XIIBB", status : "LULUS" },
+"0081718293": { nama : "JUMRAH", kelas : "XIIBB", status : "LULUS" },
+"0069782960": { nama : "KASBUR", kelas : "XIIBB", status : "LULUS" },
+"0074943498": { nama : "LAURA AULIA PUTRI", kelas : "XIIBB", status : "LULUS" },
+"0076409211": { nama : "LENA HARTIKA", kelas : "XIIBB", status : "LULUS" },
+"0074036900": { nama : "MUTHI'AH DZUL FATHONA", kelas : "XIIBB", status : "LULUS" },
+"0069037103": { nama : "NI'MAH", kelas : "XIIBB", status : "LULUS" },
+"0069481646": { nama : "NITA DEWI ANANDA", kelas : "XIIBB", status : "LULUS" },
+"0089428086": { nama : "NUR ANNISA AMIN", kelas : "XIIBB", status : "LULUS" },
+"3074353183": { nama : "NURUL ISTIQAMAH", kelas : "XIIBB", status : "LULUS" },
+"0071765936": { nama : "PUTRI", kelas : "XIIBB", status : "LULUS" },
+"0067114855": { nama : "PUTRI AYU ANDIRA", kelas : "XIIBB", status : "LULUS" },
+"0062714635": { nama : "REKA PUTRI AMELIA", kelas : "XIIBB", status : "LULUS" },
+"0061610815": { nama : "SINAR", kelas : "XIIBB", status : "LULUS" },
+"0078877193": { nama : "SRI RAHAYU NINGSI", kelas : "XIIBB", status : "LULUS" },
+"0073513677": { nama : "SUCI RAMADANI", kelas : "XIIBB", status : "LULUS" },
+"0071990554": { nama : "WAHDA WARAHMA", kelas : "XIIBB", status : "LULUS" },
+"0077310610": { nama : "ADRIANSYAH", kelas : "XIITJKT1", status : "LULUS" },
+"0071773801": { nama : "ANANDA NUR ANNISA", kelas : "XIITJKT1", status : "LULUS" },
+"0074641075": { nama : "AYU LESTARI", kelas : "XIITJKT1", status : "LULUS" },
+"0079613503": { nama : "DIVA NAYLATUL IZZAH", kelas : "XIITJKT1", status : "LULUS" },
+"0076242748": { nama : "ELSA NURJANNAH", kelas : "XIITJKT1", status : "LULUS" },
+"0076821878": { nama : "FIQRAH", kelas : "XIITJKT1", status : "LULUS" },
+"0063457840": { nama : "HAEKAL", kelas : "XIITJKT1", status : "LULUS" },
+"0078368455": { nama : "INA NURLINA", kelas : "XIITJKT1", status : "LULUS" },
+"0079770987": { nama : "ISWANDI", kelas : "XIITJKT1", status : "LULUS" },
+"0085205641": { nama : "KIKI RAMADHANI", kelas : "XIITJKT1", status : "LULUS" },
+"0073464118": { nama : "MUH ALIF RAIHAN", kelas : "XIITJKT1", status : "LULUS" },
+"0071581582": { nama : "MUH ARDIAN", kelas : "XIITJKT1", status : "LULUS" },
+"0052107324": { nama : "MUH. ABDI PRASETIYA", kelas : "XIITJKT1", status : "LULUS" },
+"0071870356": { nama : "MUH. FAJRI", kelas : "XIITJKT1", status : "LULUS" },
+"0063904670": { nama : "NUR ARISKAWATI NAFSAN", kelas : "XIITJKT1", status : "LULUS" },
+"0058537105": { nama : "NURHASNI", kelas : "XIITJKT1", status : "LULUS" },
+"0065796813": { nama : "NURHAYATI", kelas : "XIITJKT1", status : "LULUS" },
+"0069620042": { nama : "NURWAHYU ADE SAPUTRA", kelas : "XIITJKT1", status : "LULUS" },
+"0076164049": { nama : "PUTRI SALSA FEBRIAN", kelas : "XIITJKT1", status : "LULUS" },
+"0066139383": { nama : "RAHMANIAR", kelas : "XIITJKT1", status : "LULUS" },
+"0066046790": { nama : "RESKY RAMADHAN", kelas : "XIITJKT1", status : "LULUS" },
+"0076291657": { nama : "RIAND AGUSTIAWAN", kelas : "XIITJKT1", status : "LULUS" },
+"0067617481": { nama : "SALMA FERAH", kelas : "XIITJKT1", status : "LULUS" },
+"0073964108": { nama : "SRI NURZAHRA", kelas : "XIITJKT1", status : "LULUS" },
+"0075439311": { nama : "ST MARYAM TIKA", kelas : "XIITJKT1", status : "LULUS" },
+"0078342457": { nama : "SYAHRU SABRI", kelas : "XIITJKT1", status : "LULUS" },
+"0075515770": { nama : "WAHYU", kelas : "XIITJKT1", status : "LULUS" },
+"0075313579": { nama : "YUDHA MULYA MARSAMBADI", kelas : "XIITJKT1", status : "LULUS" },
+"0072964696": { nama : "ZAHRA THULHEIR", kelas : "XIITJKT1", status : "LULUS" },
+"0073971236": { nama : "ZASKIATUL MAGFIRAH", kelas : "XIITJKT1", status : "LULUS" },
+"0084255618": { nama : "AIDIL NUR", kelas : "XIITJKT2", status : "LULUS" },
+"0068194181": { nama : "ALIA", kelas : "XIITJKT2", status : "LULUS" },
+"0061033520": { nama : "ARDINA", kelas : "XIITJKT2", status : "LULUS" },
+"0076179730": { nama : "ASDAR", kelas : "XIITJKT2", status : "LULUS" },
+"0026083008": { nama : "AWAL NUR", kelas : "XIITJKT2", status : "LULUS" },
+"0077523535": { nama : "DAFI", kelas : "XIITJKT2", status : "LULUS" },
+"0079587713": { nama : "DENI YUNGGARA", kelas : "XIITJKT2", status : "LULUS" },
+"0079239327": { nama : "ERLI", kelas : "XIITJKT2", status : "LULUS" },
+"0089685328": { nama : "FEBRIANTO MUSTAMIN", kelas : "XIITJKT2", status : "LULUS" },
+"0075254826": { nama : "FIKRIYAH SYAMSIR", kelas : "XIITJKT2", status : "LULUS" },
+"0063910130": { nama : "FIRGI", kelas : "XIITJKT2", status : "LULUS" },
+"0076858029": { nama : "HAIKAL", kelas : "XIITJKT2", status : "LULUS" },
+"0079327443": { nama : "MAUDY FARHA SAGINAH", kelas : "XIITJKT2", status : "LULUS" },
+"0074104087": { nama : "MAWAR WANTI S", kelas : "XIITJKT2", status : "LULUS" },
+"0077814581": { nama : "MISBAHUDDIN", kelas : "XIITJKT2", status : "LULUS" },
+"0078828882": { nama : "MUH IBNU RAFFI ASWAN", kelas : "XIITJKT2", status : "LULUS" },
+"0073133751": { nama : "MUHAMMAD AKMAL FITRA", kelas : "XIITJKT2", status : "LULUS" },
+"0078268931": { nama : "MUHAMMAD ARIFUDDIN", kelas : "XIITJKT2", status : "LULUS" },
+"0072484887": { nama : "NUR ALISA", kelas : "XIITJKT2", status : "LULUS" },
+"0072598234": { nama : "OKTAVIANI ROMADHAN", kelas : "XIITJKT2", status : "LULUS" },
+"0075206046": { nama : "PUTRA AGIN ANUGRAH", kelas : "XIITJKT2", status : "LULUS" },
+"0079666788": { nama : "PUTRI", kelas : "XIITJKT2", status : "LULUS" },
+"0074522619": { nama : "RINA", kelas : "XIITJKT2", status : "LULUS" },
+"0079319881": { nama : "SALSABILAH", kelas : "XIITJKT2", status : "LULUS" },
+"0064388547": { nama : "SARAH PUTRI RAMADHANI", kelas : "XIITJKT2", status : "LULUS" },
+"0074433879": { nama : "SELVIANI", kelas : "XIITJKT2", status : "LULUS" },
+"0077834376": { nama : "YUNI' S", kelas : "XIITJKT2", status : "LULUS" },
+"0064528612": { nama : "ABD WAHAB", kelas : "XIITJKT3", status : "LULUS" },
+"0067595957": { nama : "AHMAD SUL FITRAH", kelas : "XIITJKT3", status : "LULUS" },
+"0078354979": { nama : "ANDI NURFITRAWAN RESSA", kelas : "XIITJKT3", status : "LULUS" },
+"0072417923": { nama : "ANNUR RAHMAT", kelas : "XIITJKT3", status : "LULUS" },
+"0074193921": { nama : "AZIZAH", kelas : "XIITJKT3", status : "LULUS" },
+"0074215798": { nama : "AZMUL FAUZI", kelas : "XIITJKT3", status : "LULUS" },
+"0065185720": { nama : "DIDIER FADLIE", kelas : "XIITJKT3", status : "LULUS" },
+"0066966336": { nama : "EKA", kelas : "", status : "TIDAK LULUS" },
+"0066901084": { nama : "ELSA", kelas : "XIITJKT3", status : "LULUS" },
+"0077884106": { nama : "FITRI RAMADANI", kelas : "XIITJKT3", status : "LULUS" },
+"0082838144": { nama : "GUSTI RANDA", kelas : "XIITJKT3", status : "LULUS" },
+"0064441032": { nama : "HAIKAL", kelas : "XIITJKT3", status : "LULUS" },
+"0082116565": { nama : "KESI", kelas : "XIITJKT3", status : "LULUS" },
+"0071257362": { nama : "LENA RESKI JAYANTI", kelas : "XIITJKT3", status : "LULUS" },
+"0064424526": { nama : "LINA", kelas : "XIITJKT3", status : "LULUS" },
+"0068736536": { nama : "LISA", kelas : "XIITJKT3", status : "LULUS" },
+"0087157631": { nama : "M AFHDAL MUAWAN", kelas : "XIITJKT3", status : "LULUS" },
+"0084848306": { nama : "MELI NUR PIALITA", kelas : "XIITJKT3", status : "LULUS" },
+"0067834224": { nama : "MUH ADRIAN MAULANA", kelas : "XIITJKT3", status : "LULUS" },
+"0076180929": { nama : "NURUL AULIA", kelas : "XIITJKT3", status : "LULUS" },
+"0074440099": { nama : "NURUL HUSNAENI", kelas : "XIITJKT3", status : "LULUS" },
+"0074561624": { nama : "NURUL SAFIRA", kelas : "XIITJKT3", status : "LULUS" },
+"0079894520": { nama : "PRATIWI PUTRI LESTARI", kelas : "XIITJKT3", status : "LULUS" },
+"0079459372": { nama : "RACHMAT AFANDI K", kelas : "XIITJKT3", status : "LULUS" },
+"0071401442": { nama : "RAHMAT NUR AKBAR SYAM", kelas : "XIITJKT3", status : "LULUS" },
+"0071420488": { nama : "RAHMAT QADAFI", kelas : "XIITJKT3", status : "LULUS" },
+"0072665688": { nama : "RATNA R", kelas : "XIITJKT3", status : "LULUS" },
+"0069606862": { nama : "SAFNA", kelas : "XIITJKT3", status : "LULUS" },
+"0067941927": { nama : "SYAHRUL RAMADHAN", kelas : "XIITJKT3", status : "LULUS" },
+"0076164950": { nama : "WAHYUDI", kelas : "XIITJKT3", status : "LULUS" },
+
+
+            // Tambahkan data lainnya di sini...
+            "0053398027": { nama: "HARIANI", kelas: "", status: "TIDAK LULUS" }
+        };
+
+        function cekKelulusan() {
+            const nisn = document.getElementById("nisnInput").value;
+            const hasilDiv = document.getElementById("hasil");
+            
+            if (dataSiswa[nisn]) {
+                const siswa = dataSiswa[nisn];
+                hasilDiv.innerHTML = `
+                    <strong>NISN:</strong> ${nisn}<br>
+                    <strong>Nama:</strong> ${siswa.nama}<br>
+                    <strong>Kelas:</strong> ${siswa.kelas}<br>
+                    <strong>Status:</strong> <span style="color: ${siswa.status === 'LULUS' ? 'green' : 'red'}">${siswa.status}</span>
+                `;
+            } else {
+                hasilDiv.innerHTML = `<span style="color: red;">Data tidak ditemukan. Periksa kembali NISN Anda.</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
